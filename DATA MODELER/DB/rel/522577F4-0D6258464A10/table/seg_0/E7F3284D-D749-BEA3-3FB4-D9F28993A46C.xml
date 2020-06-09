@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E7F3284D-D749-BEA3-3FB4-D9F28993A46C" name="VENDEDOR">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:24:33 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_vendedor" id="2027C04D-A694-C374-A9B7-EB3EBBF740F7">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:25:49 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="codigo" id="3EF545A3-C64E-B21B-DB54-9A3DD86BEC1E">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:25:49 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6</dataTypeSize>
+<ownDataTypeParameters>6,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="A1479C2D-C305-E0F3-1D72-87AA6132C6E9">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:25:49 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>35</dataTypeSize>
+<ownDataTypeParameters>35,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sucursal" id="08EB8993-131E-1D72-BDB9-D218495B379A">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:25:49 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C1E4B4C5-51D0-3862-DAC8-12A42422DCD5" name="VENDEDOR_PK">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:25:49 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2027C04D-A694-C374-A9B7-EB3EBBF740F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

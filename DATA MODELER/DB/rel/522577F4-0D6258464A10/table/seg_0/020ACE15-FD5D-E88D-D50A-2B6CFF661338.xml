@@ -1,0 +1,180 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="020ACE15-FD5D-E88D-D50A-2B6CFF661338" name="VENTA">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:31:25 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<ordsAlias>table_8</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="cantidad" id="D2BCCCBF-A81F-63F3-35A4-08E9C8BEF76C">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:31:58 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="precioUnitario" id="BBCCFD95-58D0-6B0E-D584-33709133E900">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:31:58 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT043</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENTE_id_cliente" id="D947BECF-944B-3CB2-06EA-D7E009A103BC">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:10 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="81195A10-0C67-3010-B34F-EDD339D64FA7" referredColumn="C9C617BB-ACF5-6A4B-82C7-64C5FF65A435"/>
+</associations>
+</Column>
+<Column name="VENDEDOR_id_vendedor" id="980253D0-8016-B58F-CF54-FA44CA04F286">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:17 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="04CE1A03-68D5-CDC9-FD9A-D53A3C4B781A" referredColumn="2027C04D-A694-C374-A9B7-EB3EBBF740F7"/>
+</associations>
+</Column>
+<Column name="ARTICULO_id_articulo" id="7296B50F-EDEE-E1F9-6543-21AA4938BC27">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:22 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D84ABBFF-9F2E-EF52-E182-8B61A0DC6131" referredColumn="A545A35B-5184-0766-AAAD-6DC61DFE6439"/>
+</associations>
+</Column>
+<Column name="FECHA_id_fecha" id="8FBBD64E-D96F-6007-17FA-D9F43E8F8295">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:26 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7B7CD9CC-354E-9468-4BB8-1768C6857BDC" referredColumn="89F464C4-156B-AEA1-5006-DE18853E3A09"/>
+</associations>
+</Column>
+<Column name="REGION_id_region" id="2D6C3B15-199B-7E6B-5869-EBC7DA3D8974">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:30 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D3088491-0A29-F982-DAA8-5853AB60D915" referredColumn="946C1CE0-850B-3664-4119-3A1356133526"/>
+</associations>
+</Column>
+<Column name="SUCURSAL_id_sucursal" id="BD161846-DC1D-2426-AAEB-06B729536B1C">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:35 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F436C12C-92E8-F32C-3744-0A4FF83A6C13" referredColumn="78630B7C-B7F4-C668-2ED0-0A3ABF703162"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="419D5C8B-9CE7-8B51-221E-0DDA2A0042EA" name="VENTA_CLIENTE_FK">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:09 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D947BECF-944B-3CB2-06EA-D7E009A103BC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6397BE8E-CD44-C14A-6864-A930E0EFD082" name="VENTA_VENDEDOR_FK">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:17 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="980253D0-8016-B58F-CF54-FA44CA04F286"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AAE40153-2550-AFBC-A98E-B49C40DBC091" name="VENTA_ARTICULO_FK">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:22 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7296B50F-EDEE-E1F9-6543-21AA4938BC27"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B7CF7DAF-24A2-1691-4A99-3C69BDC39650" name="VENTA_FECHA_FK">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:26 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8FBBD64E-D96F-6007-17FA-D9F43E8F8295"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8346BA53-76AC-7D61-DF15-7FE19505DCFF" name="VENTA_REGION_FK">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:30 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2D6C3B15-199B-7E6B-5869-EBC7DA3D8974"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="26E993E8-9222-6128-A32D-E35190B9B27B" name="VENTA_SUCURSAL_FK">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:32:35 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BD161846-DC1D-2426-AAEB-06B729536B1C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

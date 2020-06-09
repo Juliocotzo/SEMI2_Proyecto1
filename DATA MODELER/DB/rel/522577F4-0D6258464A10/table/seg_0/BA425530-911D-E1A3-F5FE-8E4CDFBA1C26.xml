@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BA425530-911D-E1A3-F5FE-8E4CDFBA1C26" name="FECHA">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:29:15 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_fecha" id="89F464C4-156B-AEA1-5006-DE18853E3A09">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:30:24 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="dia" id="0945716D-CD3F-40A6-97F5-A6DB79AB5CAF">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:30:24 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mes" id="9E4056EB-890C-0FF9-C7BD-1DABE5DC6677">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:30:24 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="anio" id="0649CD3F-A669-8889-B4C7-8CE9FDFAEE25">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:30:24 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha" id="6CB8AA20-EFA7-3FA5-619F-7094F50C10DF">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:30:24 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="semestre" id="1F0FAFF2-5110-D75D-AE02-9D1A7BFC96C5">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:30:24 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E56B2B7B-683F-185B-A6CF-BD621D5994DA" name="FECHA_PK">
+<createdBy>julio</createdBy>
+<createdTime>2020-06-07 03:30:24 UTC</createdTime>
+<ownerDesignName>DB</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="89F464C4-156B-AEA1-5006-DE18853E3A09"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

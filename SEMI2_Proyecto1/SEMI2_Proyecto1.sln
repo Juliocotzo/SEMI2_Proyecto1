@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SEMI2_Proyecto1", "SEMI2_Proyecto1\SEMI2_Proyecto1.dtproj", "{83D9919F-4E16-49C2-8346-440E81B4D008}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83D9919F-4E16-49C2-8346-440E81B4D008}.Development|Default.ActiveCfg = Development
+		{83D9919F-4E16-49C2-8346-440E81B4D008}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE12051A-620A-48A8-998F-A0B5D4026196}
+	EndGlobalSection
+EndGlobal

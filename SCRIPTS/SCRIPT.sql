@@ -48,6 +48,7 @@ CREATE TABLE vendedor (
 CREATE TABLE venta (
     cantidad               INTEGER NOT NULL,
     preciounitario         MONEY NOT NULL,
+    total                  MONEY NOT NULL,
     cliente_id_cliente     INTEGER NOT NULL,
     vendedor_id_vendedor   INTEGER NOT NULL,
     articulo_id_articulo   INTEGER NOT NULL,

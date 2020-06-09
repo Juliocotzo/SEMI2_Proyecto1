@@ -11,8 +11,8 @@
   DTS:LocaleID="4106"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="62"
-  DTS:VersionGUID="{C44FE408-0246-47FD-9897-A66CA11EB6B7}">
+  DTS:VersionBuild="67"
+  DTS:VersionGUID="{75D3C51B-C872-44A8-A921-ACF185DE5293}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -878,7 +878,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       DTS:ExecutableType="Microsoft.ScriptTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Carga Cliente"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <ScriptProject
@@ -1574,7 +1574,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:ExecutableType="Microsoft.ScriptTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Carga Sucursal"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <ScriptProject
@@ -2270,7 +2270,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:ExecutableType="Microsoft.ScriptTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Carga Vendedor"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <ScriptProject
@@ -2957,7 +2957,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       DTS:ExecutableType="Microsoft.ScriptTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Carga Ventas"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <ScriptProject
@@ -4105,6 +4105,104 @@ where [refTable].[codigocliente] = ? and [refTable].[nombre] = ? and [refTable].
                       refId="Package\Data Flow Task\Cliente.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Data Flow Task\Cliente.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[unidades]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="unidades"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[unidades]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[precioUnitario]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="precioUnitario"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[precioUnitario]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[ValoresNegativos]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="ValoresNegativos"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">(DT_I4)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[unidades]} &lt;= 0 || (DT_I4)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[precioUnitario]} &lt;= 0</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(DT_I4)unidades &lt;= 0 || (DT_I4)precioUnitario &lt;= 0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[ValoresPositivos]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="ValoresPositivos"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -5938,9 +6036,14 @@ where [refTable].[codigo] = ? and [refTable].[nombre] = ? and [refTable].[sucurs
               startId="Package\Data Flow Task\Vendedor.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
-              endId="Package\Data Flow Task\Articulo.Inputs[Lookup Input]"
+              endId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
               name="OLE DB Source Output"
               startId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[ValoresPositivos]"
+              endId="Package\Data Flow Task\Articulo.Inputs[Lookup Input]"
+              name="ValoresPositivos"
+              startId="Package\Data Flow Task\Conditional Split.Outputs[ValoresPositivos]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -11510,6 +11613,10 @@ namespace ST_381ec9cb4650444c978b4be56d4a807f
                 SqlConnection myADONETConnection = new SqlConnection();
                 myADONETConnection = (SqlConnection)(Dts.Connections["DESKTOP-OSG9JQ5.PROYECTO_1"].AcquireConnection(Dts.Transaction) as SqlConnection);
 
+                string queryTablaVenta = "DELETE FROM venta";
+                SqlCommand myCommandTablaVenta = new SqlCommand(queryTablaVenta, myADONETConnection);
+                myCommandTablaVenta.ExecuteNonQuery();
+
                 string queryTablaArticulo = "DELETE FROM articulo";
                 SqlCommand myCommandTablaArticulo = new SqlCommand(queryTablaArticulo, myADONETConnection);
                 myCommandTablaArticulo.ExecuteNonQuery();
@@ -11534,9 +11641,7 @@ namespace ST_381ec9cb4650444c978b4be56d4a807f
                 SqlCommand myCommandTablaVendedor = new SqlCommand(queryTablaVendedor, myADONETConnection);
                 myCommandTablaVendedor.ExecuteNonQuery();
 
-                string queryTablaVenta = "DELETE FROM venta";
-                SqlCommand myCommandTablaVenta = new SqlCommand(queryTablaVenta, myADONETConnection);
-                myCommandTablaVenta.ExecuteNonQuery();
+                
                 
                 Dts.TaskResult = (int)ScriptResults.Success;
 
@@ -11575,7 +11680,7 @@ namespace ST_381ec9cb4650444c978b4be56d4a807f
     <msb:CodeName>ST_381ec9cb4650444c978b4be56d4a807f</msb:CodeName>
     <msb:Language>msBuild</msb:Language>
     <msb:DisplayName>ST_381ec9cb4650444c978b4be56d4a807f</msb:DisplayName>
-    <msb:ProjectId>{105EB09A-5CB1-4D11-B86A-0F55D21CA745}</msb:ProjectId>
+    <msb:ProjectId>{166467CE-EDBE-44DD-A0FB-C1188E2A548C}</msb:ProjectId>
   </msb:PropertyGroup>
   <msb:ItemGroup>
     <msb:Project Include="ST_381ec9cb4650444c978b4be56d4a807f.csproj" />
@@ -11717,18 +11822,18 @@ namespace ST_381ec9cb4650444c978b4be56d4a807f.Properties {
           <BinaryItem
             Name="ST_381ec9cb4650444c978b4be56d4a807f.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDACNu3V4AAAAAAAAAAOAAIiALATAAABIAAAAIAAAAAAAAxjEA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMEm314AAAAAAAAAAOAAIiALATAAABIAAAAIAAAAAAAAxjEA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAHQxAABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAHQxAABPAAAAAEAAAGwEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAzBEAAAAgAAAAEgAAAAIA
-AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAAUAAAAAAAAAAAAAAAAAABAAABA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAGwEAAAAQAAAAAYAAAAUAAAAAAAAAAAAAAAAAABAAABA
 LnJlbG9jAAAMAAAAAGAAAAACAAAAGgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACo
 MQAAAAAAAEgAAAACAAUA8CEAAMwOAAABAAAAAAAAALwwAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswAgANAQAAAQAAEXMQAAAKCgIoEQAACm8SAAAKcgEAAHBv
-EwAACgIoEQAACm8UAAAKbxUAAAp1DwAAAQpyNwAAcAZzFgAACm8XAAAKJnJhAABwBnMWAAAKbxcA
-AAomcokAAHAGcxYAAApvFwAACiZyrQAAcAZzFgAACm8XAAAKJnLTAABwBnMWAAAKbxcAAAomcv0A
-AHAGcxYAAApvFwAACiZyJwEAcAZzFgAACm8XAAAKJgIoEQAAChZvGAAACt5WCwIoEQAACm8ZAAAK
+EwAACgIoEQAACm8UAAAKbxUAAAp1DwAAAQpyNwAAcAZzFgAACm8XAAAKJnJbAABwBnMWAAAKbxcA
+AAomcoUAAHAGcxYAAApvFwAACiZyrQAAcAZzFgAACm8XAAAKJnLRAABwBnMWAAAKbxcAAAomcvcA
+AHAGcxYAAApvFwAACiZyIQEAcAZzFgAACm8XAAAKJgIoEQAAChZvGAAACt5WCwIoEQAACm8ZAAAK
 cksBAHBvGgAACm8bAAAKbxwAAApybwEAcCgdAAAKKB4AAAoMCAdvHAAACm8fAAAKAigRAAAKF28Y
 AAAK3goILAYIbyAAAArc3gAqAAAAARwAAAIA5gAaAAEKAAAAAAAAAAC2tgBWEAAAAR4CKCEAAAoq
 HgIoIgAACiqufgEAAAQtHnKLAQBw0AMAAAIoIwAACm8kAAAKcyUAAAqAAQAABH4BAAAEKhp+AgAA
@@ -11751,7 +11856,7 @@ AJkA6gQGAMEA6gQVANEA6gQGAHkA6gQGAHEA6wUkANkA0wUpAOEA6wMuANkAQQQ0AOkAYwQ4APEA
 ACkBRgEGAHEA6gQGAKEA6gQGADEBnABlADEBSwZuAKkA6gR0AMkA6gQGAAgAFACOAAgAGACTACkA
 cwD7AC4ACwDTAC4AEwDcAC4AGwD7AC4AIwAEAS4AKwAtAS4AMwAtAS4AOwAtAS4AQwAEAS4ASwAz
 AS4AUwAtAS4AWwBKAUMAYwCTAEkAcwD7AGEAewCTAGMAawCTABsAAwABAAQAAwAAALAExAAAAAoB
-yQAAABMGzgACAAQAAwACAAUABQABAAYABQACAAcABwAEgAAAAQAAACcd4XUAAAAAAAAMAwAABAAA
+yQAAABMGzgACAAQAAwACAAUABQABAAYABQACAAcABwAEgAAAAQAAACkdsAAAAAAAAAAMAwAABAAA
 AAAAAAAAAAAAfABHAAAAAAAPAAAAAAAAAAAAAACFAFMDAAAAAAQAAAAAAAAAAAAAAHwAOwAAAAAA
 BAAAAAAAAAAAAAAAfAD0AwAAAAAPAAAAAAAAAAAAAACFABQAAAAAAAAAAAABAAAAOwUAAAUAAgAA
 AAA8TW9kdWxlPgBTeXN0ZW0uSU8ATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAHZhbHVl
@@ -11783,16 +11888,16 @@ MzgxZWM5Y2I0NjUwNDQ0Yzk3OGI0YmU1NmQ0YTgwN2YuUHJvcGVydGllcwBnZXRfVmFyaWFibGVz
 AFNldHRpbmdzAGdldF9Db25uZWN0aW9ucwBTdWNjZXNzAGdldF9EdHMAU2NyaXB0UmVzdWx0cwBD
 b25jYXQAT2JqZWN0AGdldF9EZWZhdWx0AHNldF9UYXNrUmVzdWx0AFN5c3RlbS5EYXRhLlNxbENs
 aWVudABDcmVhdGVUZXh0AGdldF9Bc3NlbWJseQBFeGVjdXRlTm9uUXVlcnkAADVEAEUAUwBLAFQA
-TwBQAC0ATwBTAEcAOQBKAFEANQAuAFAAUgBPAFkARQBDAFQATwBfADEAASlEAEUATABFAFQARQAg
-AEYAUgBPAE0AIABhAHIAdABpAGMAdQBsAG8AACdEAEUATABFAFQARQAgAEYAUgBPAE0AIABjAGwA
-aQBlAG4AdABlAAAjRABFAEwARQBUAEUAIABGAFIATwBNACAAZgBlAGMAaABhAAAlRABFAEwARQBU
-AEUAIABGAFIATwBNACAAcgBlAGcAaQBvAG4AAClEAEUATABFAFQARQAgAEYAUgBPAE0AIABzAHUA
-YwB1AHIAcwBhAGwAAClEAEUATABFAFQARQAgAEYAUgBPAE0AIAB2AGUAbgBkAGUAZABvAHIAACNE
-AEUATABFAFQARQAgAEYAUgBPAE0AIAB2AGUAbgB0AGEAACNVAHMAZQByADoAOgBGAG8AbABkAGUA
+TwBQAC0ATwBTAEcAOQBKAFEANQAuAFAAUgBPAFkARQBDAFQATwBfADEAASNEAEUATABFAFQARQAg
+AEYAUgBPAE0AIAB2AGUAbgB0AGEAAClEAEUATABFAFQARQAgAEYAUgBPAE0AIABhAHIAdABpAGMA
+dQBsAG8AACdEAEUATABFAFQARQAgAEYAUgBPAE0AIABjAGwAaQBlAG4AdABlAAAjRABFAEwARQBU
+AEUAIABGAFIATwBNACAAZgBlAGMAaABhAAAlRABFAEwARQBUAEUAIABGAFIATwBNACAAcgBlAGcA
+aQBvAG4AAClEAEUATABFAFQARQAgAEYAUgBPAE0AIABzAHUAYwB1AHIAcwBhAGwAAClEAEUATABF
+AFQARQAgAEYAUgBPAE0AIAB2AGUAbgBkAGUAZABvAHIAACNVAHMAZQByADoAOgBGAG8AbABkAGUA
 cgBFAHIAcgBvAHIAABtcAEUAcgByAG8AcgBMAG8AZwAuAGwAbwBnAABxUwBUAF8AMwA4ADEAZQBj
 ADkAYwBiADQANgA1ADAANAA0ADQAYwA5ADcAOABiADQAYgBlADUANgBkADQAYQA4ADAANwBmAC4A
-UAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAAAAActiGx7QkPQ6S9wQxt
-rjVyAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFdCAcDEj0SQRJFBCAAEm0EIAAScQUgARJ1HAMg
+UAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAAAACbLgnww0/mTIBI4wPi
+cCTDAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFdCAcDEj0SQRJFBCAAEm0EIAAScQUgARJ1HAMg
 ABwEIAEcHAYgAgEOEj0DIAAIBSAAEoCBBiABEoCFHAMgAA4FAAIODg4FAAESRQ4IAAESgJkRgJ0F
 IAASgKEHIAIBDhKAoQi3elxWGTTgiQiJhF3NgIDMkQQAAAAABAEAAAADBhJVAwYSWQMGEhACBggD
 BhEUBAAAElUEAAASWQUAAQESWQQAABIQAwAAAQQIABJVBAgAElkECAASEAgBAAgAAAAAAB4BAAEA
@@ -11806,25 +11911,25 @@ AAAAAAAAAAAAAFBBRFBBRFC0AAAAnDEAAAAAAAAAAAAAtjEAAAAgAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAKgxAAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAA
-AEgAAABYQAAAGgQAAAAAAAAAAAAAGgQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8A
-AAAAAL0E7/4AAAEAAAABAOF1Jx0AAAEA4XUnHT8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
+AEgAAABYQAAADgQAAAAAAAAAAAAADgQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8A
+AAAAAL0E7/4AAAEAAAABALAAKR0AAAEAsAApHT8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
 AAAAAQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8A
-bgAAAAAAAACwBHoDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAFYDAAABADAAMAAw
+bgAAAAAAAACwBG4DAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAEoDAAABADAAMAAw
 ADAAMAA0AGIAMAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAiAAEAAQBDAG8AbQBwAGEA
 bgB5AE4AYQBtAGUAAAAAAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAA
 AAAAUwBUAF8AMwA4ADEAZQBjADkAYwBiADQANgA1ADAANAA0ADQAYwA5ADcAOABiADQAYgBlADUA
-NgBkADQAYQA4ADAANwBmAAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAu
-ADcANAA2ADMALgAzADAAMQA3ADcAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAA
-UwBUAF8AMwA4ADEAZQBjADkAYwBiADQANgA1ADAANAA0ADQAYwA5ADcAOABiADQAYgBlADUANgBk
-ADQAYQA4ADAANwBmAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQA
-AABDAG8AcAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAyADAAAAAqAAEAAQBMAGUAZwBhAGwAVABy
-AGEAZABlAG0AYQByAGsAcwAAAAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4A
-YQBtAGUAAABTAFQAXwAzADgAMQBlAGMAOQBjAGIANAA2ADUAMAA0ADQANABjADkANwA4AGIANABi
-AGUANQA2AGQANABhADgAMAA3AGYALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0A
-ZQAAAAAAUwBUAF8AMwA4ADEAZQBjADkAYwBiADQANgA1ADAANAA0ADQAYwA5ADcAOABiADQAYgBl
-ADUANgBkADQAYQA4ADAANwBmAAAAQgAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAA
-MQAuADAALgA3ADQANgAzAC4AMwAwADEANwA3AAAAAABGAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABW
-AGUAcgBzAGkAbwBuAAAAMQAuADAALgA3ADQANgAzAC4AMwAwADEANwA3AAAAAAAAAAAAAAAAAAAA
+NgBkADQAYQA4ADAANwBmAAAAOgANAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAu
+ADcANAA2ADUALgAxADcANgAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQA
+XwAzADgAMQBlAGMAOQBjAGIANAA2ADUAMAA0ADQANABjADkANwA4AGIANABiAGUANQA2AGQANABh
+ADgAMAA3AGYALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMA
+bwBwAHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADIAMAAAACoAAQABAEwAZQBnAGEAbABUAHIAYQBk
+AGUAbQBhAHIAawBzAAAAAAAAAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBhAG0A
+ZQAAAFMAVABfADMAOAAxAGUAYwA5AGMAYgA0ADYANQAwADQANAA0AGMAOQA3ADgAYgA0AGIAZQA1
+ADYAZAA0AGEAOAAwADcAZgAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAA
+AABTAFQAXwAzADgAMQBlAGMAOQBjAGIANAA2ADUAMAA0ADQANABjADkANwA4AGIANABiAGUANQA2
+AGQANABhADgAMAA3AGYAAAA+AA0AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4A
+MAAuADcANAA2ADUALgAxADcANgAAAAAAQgANAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBp
+AG8AbgAAADEALgAwAC4ANwA0ADYANQAuADEANwA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -13253,40 +13358,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <NodeLayout
           Size="113.6,41.6"
           Id="Package\Data Flow Task\Articulo"
-          TopLeft="599.487201476239,87.9798011579825" />
+          TopLeft="605.128227324176,213.313138248215" />
         <NodeLayout
           Size="110.4,41.6"
           Id="Package\Data Flow Task\Cliente"
-          TopLeft="602.564124666023,184.363643023593" />
+          TopLeft="608.20515051396,309.696980113826" />
         <NodeLayout
           Size="149.6,41.6"
           Id="Package\Data Flow Task\OLE DB Source"
-          TopLeft="580.4,14.8571428571429" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
-          TopLeft="655.74360073812,56.4571428571429">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,31.5226583008396"
-              Start="0,0"
-              End="0,24.0226583008396">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.0226583008396" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="580.4,42.1702751569346" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output]"
-          TopLeft="657.025663071131,129.579801157982">
+          TopLeft="662.666688919068,254.913138248215">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -13311,14 +13394,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <NodeLayout
           Size="106.4,41.6"
           Id="Package\Data Flow Task\Fecha"
-          TopLeft="594.871816691563,358.222235162652" />
+          TopLeft="600.5128425395,483.555572252884" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\Data Flow Task\Data Conversion"
-          TopLeft="574.358995426337,274.18182808637" />
+          TopLeft="580.000021274274,399.515165176602" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output1]"
-          TopLeft="655.06156004618,225.963643023593">
+          TopLeft="660.702585894117,351.296980113826">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -13342,7 +13425,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Data Conversion Output]"
-          TopLeft="650.21540605895,315.78182808637">
+          TopLeft="655.856431906887,441.115165176602">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -13365,14 +13448,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <NodeLayout
           Size="111.2,41.6"
           Id="Package\Data Flow Task\Region"
-          TopLeft="589.230790843626,522.101028961402" />
+          TopLeft="594.871816691563,647.434366051634" />
         <NodeLayout
           Size="153.6,41.6"
           Id="Package\Data Flow Task\Derived Column"
-          TopLeft="567.692328515138,437.171731952648" />
+          TopLeft="573.333354363076,562.50506904288" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output2]"
-          TopLeft="646.282072603351,399.822235162652">
+          TopLeft="651.923098451288,525.155572252884">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -13396,7 +13479,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="644.661559679382,478.771731952648">
+          TopLeft="650.302585527319,604.10506904288">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -13419,10 +13502,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <NodeLayout
           Size="118.4,41.6"
           Id="Package\Data Flow Task\Sucursal"
-          TopLeft="590.769252438518,608.121232499543" />
+          TopLeft="596.410278286455,733.454569589775" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output3]"
-          TopLeft="647.400021641072,563.701028961402">
+          TopLeft="653.041047489009,689.034366051634">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -13447,10 +13530,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <NodeLayout
           Size="123.2,41.6"
           Id="Package\Data Flow Task\Vendedor"
-          TopLeft="595.384637223194,695.838404254663" />
+          TopLeft="601.025663071131,821.171741344895" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output4]"
-          TopLeft="653.476944830856,649.721232499543">
+          TopLeft="659.117970678793,775.054569589775">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -13475,14 +13558,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <NodeLayout
           Size="170.4,41.6"
           Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="571.282072236553,878.141437289984" />
+          TopLeft="576.92309808449,1003.47477438022" />
         <NodeLayout
           Size="102.4,41.6"
           Id="Package\Data Flow Task\Total"
-          TopLeft="598.974380944608,787.474764361819" />
+          TopLeft="604.615406792546,912.808101452051" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output5]"
-          TopLeft="653.579509083901,737.438404254663">
+          TopLeft="659.220534931838,862.771741344895">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -13506,7 +13589,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output1]"
-          TopLeft="653.328226590581,829.074764361819">
+          TopLeft="658.969252438518,954.408101452051">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -13524,6 +13607,56 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Data Flow Task\Conditional Split"
+          TopLeft="580.512841805905,130.30303366147" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="656.456420902952,83.7702751569346">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.5327585045358"
+              Start="0,0"
+              End="0,39.0327585045358">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.0327585045358" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[ValoresPositivos]"
+          TopLeft="659.820534565041,171.90303366147">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.4101045867443"
+              Start="0,0"
+              End="0,33.9101045867443">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.9101045867443" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-36.15076171875,12.0805405746222,72.3015234375,9.7490234375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -13640,9 +13773,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -13688,9 +13819,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -13712,9 +13841,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -13736,9 +13863,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -13760,9 +13885,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

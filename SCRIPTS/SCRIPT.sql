@@ -18,6 +18,7 @@ CREATE TABLE cliente (
 CREATE TABLE fecha (
     id_fecha   INTEGER NOT NULL IDENTITY(1,1) PRIMARY KEY,
     dia        INTEGER NOT NULL,
+    nombreMes  VARCHAR(20) NOT NULL,   
     mes        INTEGER NOT NULL,
     anio       INTEGER NOT NULL,
     fecha      DATE NOT NULL,
